@@ -1,0 +1,8 @@
+git init       初始化仓库
+git status       显示文件状态
+git status -s
+clear       清空页面
+git add       跟踪文件
+git commit -m        提交
+git checkout -- 文件名字      撤销修改
+git clone 远程仓库的地址
