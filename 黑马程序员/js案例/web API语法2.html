@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    ul {
+      display: none;
+      position: absolute;
+      left: 0;
+      top: 48px;
+      width: 223px;
+      border-top: 0;
+      background: #fff;
+      list-style: none;
+    }
+
+    .mi {
+      position: relative;
+      width: 223px;
+      margin: 100px auto;
+    }
+
+    .mi input {
+      width: 223px;
+      height: 48px;
+      padding: 0 10px;
+      font-size: 14px;
+      line-height: 48px;
+      border: 1px solid #e0e0e0;
+      outline: none;
+    }
+
+
+    .result-list a {
+      display: block;
+      padding: 6px 15px;
+      font-size: 12px;
+      color: #424242;
+      text-decoration: none;
+    }
+  </style>
+</head>
+
+<body>
+  <h3>事件监听</h3>
+  <p id="text">为 DOM 元素添加事件监听，等待事件发生，便立即执行一个函数。</p>
+  <button id="btn">点击改变文字颜色</button>
+  <button id="btn2">点击</button>
+  <div class="mi">
+    <input type="search" placeholder="哈哈哈">
+    <ul class="result-list">
+      <li><a href="#">全部商品</a></li>
+      <li><a href="#">小米11</a></li>
+      <li><a href="#">小米10S</a></li>
+      <li><a href="#">小米笔记本</a></li>
+      <li><a href="#">小米手机</a></li>
+      <li><a href="#">黑鲨4</a></li>
+      <li><a href="#">空调</a></li>
+    </ul>
+  </div>
+  <script>
+    // 1. 获取 button 对应的 DOM 对象
+    const btn = document.querySelector('#btn')
+    // 2. 添加事件监听
+    btn.addEventListener('click', function () {
+      console.log('等待事件被触发...')
+      let text = document.getElementById('text')
+      text.style.color = 'red'
+    })
+    const input = document.querySelector('input')
+    const ul = document.querySelector('ul')
+    input.addEventListener('focus', function () {
+      ul.style.display = 'block'
+      //console.log('有焦点触发')
+    })
+    //  事件源.addEventListener('事件类型'，事件函数)
+    // on方式会被覆盖  addEventListener可绑定多次
+    btn.addEventListener('click', function () { })  //鼠标点击
+    btn.addEventListener('mouseenter', function () { })  //鼠标移入DOM元素
+    btn.addEventListener('mouseleave', function () { })  //鼠标移出
+    btn.addEventListener('focus', function () { })  //有焦点触发
+    btn.addEventListener('blur', function () { })  //失去焦点触发
+    btn.addEventListener('keydown', function () { })  //键盘按下触发
+    btn.addEventListener('keyup', function () { })  //键盘弹起触发
+    input.addEventListener('input', function () {   //输入事件
+      console.log(input.value)   //拿到用户输入的内容
+    })
+    const btn2 = document.querySelector('#btn2');
+    btn2.addEventListener('keyup', function (e) {
+      console.log(e.key)   //输出所按的键
+      if (e.key === 'Enter') {
+        console.log('Enter')
+      }
+    })  //事件回调函数的【第1个参数】即所谓的事件对象,即e，里面有事件触发时的相关信息
+    //常用事件对象的属性
+    //  1. `ev.type` 当前事件的类型
+    //  2. `ev.clientX/Y` 光标相对浏览器可视窗口左上角的位置
+    //  3. `ev.offsetX/Y` 光标相于当前 DOM 元素左上角的位置
+    //   .trim()去除左右的空格
+
+    //  环境对象指的是函数内部特殊的变量 `this` ，它代表着当前函数运行时所处的环境
+    //  【谁调用 `this` 就是谁】是判断 `this` 值的粗略规则
+    //  `this` 本质上是一个变量，数据类型为对象
+    function sayHi() {
+      // this 是一个变量
+      console.log(this);
+    }
+    //如果将函数 A 做为参数传递给函数 B 时，我们称函数 A 为回调函数。
+    // 调用定时器，匿名函数做为参数
+    setInterval(function () {
+      console.log('我是回调函数...');
+    }, 1000);
+    // 1. 回调函数本质还是函数，只不过把它当成参数使用
+    // 2. 使用匿名函数做为回调函数比较常见
+  </script>
+</body>
+
+</html>

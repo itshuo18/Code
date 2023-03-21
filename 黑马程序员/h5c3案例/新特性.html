@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      header,
+      nav,
+      footer {
+        height: 120px;
+        background-color: pink;
+        border-radius: 15px;
+        width: 800px;
+        margin: 15px auto;
+      }
+      section {
+        width: 500px;
+        height: 300px;
+        background-color: skyblue;       
+      }
+      section:hover{
+        background-image: linear-gradient(transparent,rgba(0,0,0,.6));
+      }
+      video {
+        width: 100%;
+      }
+      header{
+        width:500px;
+        transition:all 2s;
+        background-color:#9F25FF;
+      }
+      header:hover{
+        height: 300px;
+        width: 800px;
+        background: linear-gradient(220.55deg, #9F25FF 0%, #FF7A00 100%);
+      }
+      nav{
+        transition:all 2s;
+        background-color:#ffce46;
+      }
+      nav:hover{
+        height:300px;
+        width: 500px;
+        background: linear-gradient(220.55deg, #FFED46 0%, #FF7EC7 100%);
+      }
+    </style>
+  </head>
+  <body>
+    <header></header>
+    <nav></nav>
+    <section>
+      数字：<input type="number" /> <br />
+      时间：<input type="tel" /><br />
+      <form action="">
+        搜索：<input type="search" name="sear" id="" required="required" placeholder="请输入内容..." autofocus="autofocus" autocomplete="off"/>
+        <input type="submit" value="提交" />
+      </form>
+    </section>
+    <video
+      src="media\mi.mp4"
+      loop="loop"
+      autoplay="autoplay"
+      muted="muted"
+      controls="controls"
+    ></video>
+    <audio
+      src="media/music.mp3"
+      autoplay="autoplay"
+      controls="controls"
+    ></audio>
+    <footer></footer>
+  </body>
+</html>

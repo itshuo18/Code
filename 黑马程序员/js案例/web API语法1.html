@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    div {
+      width: 200px;
+      height: 200px;
+      background-color: pink;
+    }
+
+    .box3 {
+      width: 300px;
+      height: 300px;
+      background-color: skyblue;
+      margin: 100px auto;
+      padding: 10px;
+      border: 1px solid red;
+    }
+  </style>
+</head>
+
+<body>
+  <input type="text" value="电脑">
+  <input type="checkbox" id="check">
+  <button>点击</button>
+  <div class="box" data-id="1">123</div>
+  <div class="box2" data-id="2" data-spm="nothing">abc</div>
+  <div class="b"></div>
+  <p id="nav">123</p>
+  <ul>
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+  </ul>
+  <img src="./images/1.webp" alt="">
+  <script>
+    // 变量声明尽量用const,语义化更好，很多变量声明后不会再更改(有了变量先给const,如果后面修改，再改为let)
+    // 数组和对象用const声明，const定义的数组、对象里面的值可以修改，因为栈里的地址不变，堆里的值可以修改
+    // DOM(文档对象模型)，BOM(浏览器对象模型),通过js去操作html和浏览器
+    // 1.获取匹配的第一个元素
+    const box1 = document.querySelector('div')  //标签
+    const box2 = document.querySelector('.box2')  //class
+    const nav = document.querySelector('#nav')  //id
+    const li = document.querySelector('ul li:first-child')
+    nav.style.color = 'red'
+    // 2.获取匹配的多个元素,获取的为伪数组，没有方法
+    const lis = document.querySelectorAll('ul li')
+    for (let i = 0; i < lis.length; i++) {
+      console.log(lis[i])
+    }//获取对象数组
+    box1.innerText = '1234'  //更新文本内容，只能识别文本，不解析标签
+    box2.innerHTML = '<strong>abcd<strong>'  // 可以解析标签
+    const img = document.querySelector('img')  //获取图片元素 
+    img.src = './images/2.webp'  //修改属性
+    box1.style.width = '300px'  //修改样式属性需要通过style属性引出来
+    box2.style.backgroundColor = 'hotpink'//属性有-连接符，转换为小驼峰命名法
+    document.querySelector('.box').style.backgroundColor = 'red'
+    const box3 = document.querySelector('.b')
+    //box3.className ='box3 b'  //修改样式较多，可借助于更换类名,但会覆盖类名
+    box3.classList.add('box3')  //追加一个类，不会覆盖
+    //box3.classList.remove('box3')  //删除类
+    //box3.classList.toggle('box3')//切换类，有这个类就删掉，没有这个类就加上(像一个开关)
+    //优先推荐classList
+    const value = document.querySelector('input')
+    console.log(value.value)  //获取表单里的值用value
+    value.type = 'password'
+    const ipt = document.querySelector('#check')
+    ipt.checked = true   // 勾选复选框
+    const button = document.querySelector('button')
+    button.disabled = true   // 禁用按钮
+    console.log(box2.dataset.id)  //专门的data-自定义属性,在标签上一律以data开头,在DOM对象上一律以dataset对象方式获取
+    function repeat() {
+      box2.classList.toggle('box3')
+    }
+    let n = setInterval(repeat, 500)  //间歇函数  (函數,间隔时间)
+    clearInterval(n) //关闭定时器
+  </script>
+</body>
+
+</html>

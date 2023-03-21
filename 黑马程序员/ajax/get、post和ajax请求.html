@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="lib/jquery-3.6.4.min.js"></script>
+</head>
+
+<body>
+  <button id="btnGet">发起不带参数的get请求</button>
+  <button id="btnGetInfo">发起带参数的get请求</button>
+  <button id="btnPost">发起post请求</button>
+  <button id="btnAjaxGET">用ajax发起get请求</button>
+  <button id="btnAjaxPOST">用ajax发起post请求</button>
+
+  <script>
+    //  $.get(url,[date],[callback])
+    //  get发起不带参数的请求
+    $(function () {
+      $('#btnGet').on('click', function () {
+        $.get('http://www.liulongbin.top:3006/api/getbooks', function (res) {
+          console.log(res);
+        })
+      })
+
+      //  get发起带参数的请求
+      $('#btnGetInfo').on('click', function () {
+        $.get('http://www.liulongbin.top:3006/api/getbooks', { id: 1 }, function (res) {
+          console.log(res);
+        })
+      })
+    })
+
+    //  $.post(url,[date],[callback])
+    $(function () {
+      $('#btnPost').on('click', function () {
+        $.post('http://www.liulongbin.top:3006/api/addbook', { bookname: '水浒传', author: '施耐庵', publisher: '天津图书出版社' }, function (res) {
+          console.log(res);
+        })
+      })
+    })
+
+    //  $ajax({
+    //  type: '',
+    //  url: '',
+    //  data: {},
+    //  success: function (res){}
+    //  })
+    $(function () {
+      $('#btnAjaxGET').on('click', function () {
+        $.ajax({
+          type: 'GET',
+          url: 'http://www.liulongbin.top:3006/api/getbooks',
+          data: {
+            id: 1
+          },
+          success: function (res) {
+            console.log(res);
+          }
+        })
+      })
+    })
+
+    $(function () {
+      $('#btnAjaxPOST').on('click', function () {
+        $.ajax({
+          type: 'POST',
+          url: 'http://www.liulongbin.top:3006/api/addbook',
+          data: {
+            bookname: '水浒传',
+            author: '施耐庵',
+            publisher: '天津图书出版社'
+          },
+          success: function (res) {
+            console.log(res);
+          }
+        })
+      })
+    })
+  </script>
+</body>
+
+</html>

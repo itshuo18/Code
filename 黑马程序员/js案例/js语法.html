@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+</head>
+
+<body>
+    <div></div>
+    <script>
+        let age = prompt("请输入您的年龄");
+        let str = "您的年龄为" + age + "岁"
+        document.write(`您今年已经${age}岁了哦`); //模板字符串
+        alert(str); //页面弹出警告对话框
+        console.log("看看对不对"); //控制台输出语法，程序员调试使用
+        let arr = [10, 20, 30, 40];
+        console.log(arr[0]);
+        console.log(arr.length);
+        const PI = 3.14; //常量
+        let isColl = true; //布尔型
+        console.log(typeof PI); //检测数据类型
+        console.log(+"123"); //隐式转换，字符串转化数字型
+        console.log(Number("123")); //显式转换,字符串转化数字型
+        console.log(parseInt(123)); //显式转换,字符串转化整形
+        console.log(parseFloat(123)); //显式转换,字符串转化浮点型
+        arr.push(50); //添加到数组末尾
+        arr.unshift(5); //添加到数组开头
+        arr.pop(); //删除数组最后一个元素
+        arr.shift(); //删除数组第一个元素
+        arr.splice(1, 1); //删除指定元素， splice(起始位置，删除数量)
+        function ab(a = 0) {
+            a += 1;
+            b = a + 1;
+            return [a, b];
+        } //定义函数，可以给形参默认值为0，更严谨
+        let abArr = ab(4);
+        console.log(abArr);
+        let fn = function (a) { }; //匿名函数，函数表达式只能先声明后调用，web API中会使用
+        (function () { })(); //立即执行函数，防止代码污染，不需要调用
+        //(function (形参) {函数主体})  (实参)相当于调用函数;
+        console.log(false && age++); //age++不执行，一假则假
+        console.log(true || age++); //age++不执行，一真则真
+        console.log(11 && 22); //都为真，返回最后一个真值
+        console.log(11 || 22); //输出第一个真值
+        // &&左边为false就短路，||左边为true就短路
+        // '',0,undefined,null,false,NaN转换为布尔值后都是false，其余为true
+        let obj = {
+            uname: 'pink',
+            age: 18,
+            song: function (x, y) {
+                console.log(x + y);
+            },
+        }; //对象的声明,属性用逗号隔开
+        obj.song(1, 2);
+        //查的两种用法：obj.uname  或  obj['uname']
+        //增加属性语法：对象名.新属性=新值
+        //删除属性：delete obj.uname;
+        for (let k in obj) {
+            console.log(k);//输出各个属性名
+            console.log(obj[k]);//输出各个属性值
+        } //遍历对象
+        let stu = [
+            { uname: 'pink', age: 18, song: function (x, y) { console.log(x + y); } },
+            { uname: 'blue', age: 16, song: function (x, y) { console.log(x - y); } }
+        ]//数组对象
+        for (let i = 0; i < stu.length; i++) {
+            console.log(stu[i])
+        }//遍历数组对象
+        console.log(Math.floor(Math.random() * (M - N + 1)) + N)//随机一个N到M的整数
+        let random = Math.floor(Math.random() * arr.length)//随机抽取一个数组里的元素
+        document.write(arr[random])//输出这个元素
+        arr.splice(random, 1)//删除这个元素，不允许重复抽取
+        
+    </script>
+</body>
+
+</html>

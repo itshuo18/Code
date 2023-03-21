@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    span {
+      color: red;
+    }
+  </style>
+  <script>
+    // 检测 userAgent（浏览器信息）
+    !(function () {
+      const userAgent = navigator.userAgent
+      // 验证是否为Android或iPhone
+      const android = userAgent.match(/(Android);?[\s\/]+([\d.]+)?/)
+      const iphone = userAgent.match(/(iPhone\sOS)\s([\d_]+)/)
+      // 如果是Android或iPhone，则跳转至移动站点
+      if (android || iphone) {
+        location.href = 'http://m.itcast.cn'
+      }
+    })();
+    // !(function () { })();
+    !function () { }()
+  </script>
+</head>
+
+<body>
+  <a href="http://www.itcast.cn">支付成功<span>5</span>秒钟之后跳转到首页</a>
+  <button class="reload">刷新</button>
+  <button class="back">后退</button>
+  <button class="forward">前进</button>
+  <script>
+    //  BOM
+    //  window 包括 document(DOM) 、navigator 、location 、history 、screen
+    // setTimeout(回调函数, 毫秒数)  //延时函数
+    // //  清除延时函数
+    // let timer = setTimeout(回调函数, 毫秒数)
+    // clearTimeout(timer)
+
+    // // location  location (地址) 它拆分并保存了 URL 地址的各个组成部分， 它是一个对象
+    // console.log(location)
+    // console.log(location.href)
+    // 1、location.href属性 （重点） 得到完整地址，赋值则是利用js的方法去跳转页面
+    const a = document.querySelector('a')
+    let num = 5
+    let timerId = setInterval(function () {
+      num--
+      a.innerHTML = `支付成功<span>${num}</span>秒钟之后跳转到首页`
+      if (num === 0) {
+        clearInterval(timerId)
+        //location.href = 'http://www.itcast.cn'
+      }
+    }, 1000)
+    // 2.location.search 获取地址中携带的参数，符号？后面的部分
+    // 3.location.hash 获取地址中的哈希值，符号 # 后面部分
+    // 4.location.reload()方法，用来刷新当前页面，传入参数 true 时表示强制刷新
+    const reload = document.querySelector('.reload')
+    reload.addEventListener('click', function () {
+      // location.reload() // 页面刷新
+      location.reload(true) // 强制页面刷新 ctrl+f5
+    })
+
+    // // navigator   navigator是对象，该对象下记录了浏览器自身的相关信息
+    //通过 userAgent 检测浏览器的版本及平台
+
+    // // history(历史)是对象，主要管理历史记录， 该对象与浏览器地址栏的操作相对应，如前进、后退等
+    // 1.前进
+    const forward = document.querySelector('.forward')
+    forward.addEventListener('click', function () {
+      // history.forward() 
+      history.go(1)
+    })
+    // 2.后退
+    const back = document.querySelector('.back')
+    back.addEventListener('click', function () {
+      // history.back()
+      history.go(-1)
+    })
+
+    // localStorage 关闭浏览器不会消失
+    //   1.本地存储   localStorage.setItem('key','value')
+    localStorage.setItem('uname', 'pink')
+    //  2.获取方式  都加引号  localStorage.getItem
+    console.log(localStorage.getItem('uname'))
+    //  3.删除本地存储  localStorage.removeItem
+    localStorage.removeItem('uname')
+    //  本地存储只能存储字符串类型
+    localStorage.setItem('age', '18')
+    console.log(localStorage.getItem('age'))
+
+    // sessionStorage 关闭浏览器会消失    
+
+    const obj = {
+      uname: 'pink',
+      age: 18,
+      gender: '女'
+    }
+    // 1、复杂数据类型存储必须转换为 JSON字符串存储
+    localStorage.setItem('obj', JSON.stringify(obj))
+    // JSON 对象  属性和值有引号，统一为双引号
+    // 2、把 JSON字符串转换为 对象
+    console.log(JSON.parse(localStorage.getItem('obj')))
+
+
+    //  map可以遍历数组处理数据，并且返回新的数组
+    //  join() 方法用于把数组中的所有元素转换一个字符串
+    const arr = ['red', 'blue', 'pink']
+
+    // 1. 数组 map方法 处理数据并且 返回一个数组
+    const newArr = arr.map(function (ele, index) {
+      // console.log(ele)  // 数组元素
+      // console.log(index) // 索引号
+      return ele + '颜色'
+    })
+    console.log(newArr)
+
+    // 2. 数组join方法  把数组转换为字符串
+    // 小括号为空则逗号分割
+    console.log(newArr.join())  // red颜色,blue颜色,pink颜色
+    // 小括号是空字符串，则元素之间没有分隔符
+    console.log(newArr.join(''))  //red颜色blue颜色pink颜色
+    console.log(newArr.join('|'))  //red颜色|blue颜色|pink颜色
+
+  </script>
+
+</body>
+
+</html>

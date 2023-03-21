@@ -1,0 +1,36 @@
+@color: pink;
+@font14: 14px;
+@border: 5px + 5;
+
+body {
+  background-color: @color;
+}
+
+div {
+  background-color: @color;
+  font-size: @font14
+}
+
+a {
+  font-size: @font14
+}
+
+// less允许嵌套
+.header {
+  width: 200px - 50;
+  height: 200px * 2;
+  border: @border solid red;
+
+  a {
+    color: @color;
+
+    :hover {
+      color: skyblue;
+    }
+  }
+
+  &::before {
+    content: '';
+  }
+}
+// 运算符左右两侧必须敲一个空格隔开

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="swiper-5.4.5/package/css/swiper.min.css">
+  <style>
+    box {
+      width: 800px;
+      height: 300px;
+      background-color: pink;
+      margin: 50px auto;
+    }
+
+    body {
+      background: #fff;
+      font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+      font-size: 14px;
+      color: #000;
+      margin: 0;
+      padding: 0;
+    }
+
+    .swiper-container {
+      width: 300px;
+      height: 300px;
+      padding: 50px;
+    }
+
+    .swiper-slide {
+      background-position: center;
+      background-size: cover;
+      width: 300px;
+      height: 300px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="box"></div>
+  <!-- Swiper -->
+  <div class="swiper-container">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide" style="background-image:url(swiper-5.4.5/demos/images/nature-1.jpg)"></div>
+      <div class="swiper-slide" style="background-image:url(swiper-5.4.5/demos/images/nature-2.jpg)"></div>
+      <div class="swiper-slide" style="background-image:url(swiper-5.4.5/demos/images/nature-3.jpg)"></div>
+      <div class="swiper-slide" style="background-image:url(swiper-5.4.5/demos/images/nature-4.jpg)"></div>
+      <div class="swiper-slide" style="background-image:url(swiper-5.4.5/demos/images/nature-5.jpg)"></div>
+      <div class="swiper-slide" style="background-image:url(swiper-5.4.5/demos/images/nature-6.jpg)"></div>
+    </div>
+    <!-- Add Pagination -->
+    <div class="swiper-pagination"></div>
+
+    <!-- Add Arrows -->
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-button-next"></div>
+  </div>
+  <script src="swiper-5.4.5/package/js/swiper.min.js"></script>
+  <script>
+    var swiper = new Swiper('.swiper-container', {
+      effect: 'flip',
+      grabCursor: true,
+      pagination: {
+        el: '.swiper-pagination',
+      },
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+      autoplay: {
+        delay: 1000,
+        stopOnLastSlide: false,
+        disableOnInteraction: false,
+      }
+    });
+  </script>
+</body>
+
+</html>

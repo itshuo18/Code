@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    div {
+      width: 300px;
+      height: 40px;
+      border: 1px solid pink;
+      text-align: center;
+      line-height: 40px;
+      margin: 50px auto;
+    }
+  </style>
+</head>
+
+<body>
+  <div></div>
+  <div class="a"></div>
+  <script>
+    // 实例化 new
+    // 获取当前时间
+    const date = new Date()
+    // 获取指定时间
+    const date1 = new Date('2022-5-1 08:30:00')
+    // 日期的方法
+    console.log(date.getFullYear());
+    console.log(date.getMonth() + 1); //月份要加1
+    console.log(date.getDate());
+    console.log(date.getDay());  // 星期几
+
+    // getDay得到 0-6，
+    const arr=['星期天','星期一','星期二','星期三',  '星期四', '星期五', '星期六']
+
+    const div = document.querySelector('div')
+    function getMyDate() {
+      const date = new Date();
+      let h = date.getHours()
+      h = h < 10 ? '0' + h : h
+      let m = date.getMinutes()
+      m = m < 10 ? '0' + m : m
+      let s = date.getSeconds()
+      s = s < 10 ? '0' + s : s
+      return `今天是：${date.getFullYear()}年${date.getMonth() + 1}月${date.getDate()}日 ${h}:${m}:${s}`
+    }
+    div.innerHTML = getMyDate()
+    setInterval(function () {
+      div.innerHTML = getMyDate()
+    }, 1000)
+
+
+    //  时间的另一个写法
+    const divA = document.querySelector('.a')
+    divA.innerHTML = date.toLocaleString()
+    setInterval(function () {
+      const date = new Date()
+      divA.innerHTML = date.toLocaleString()
+    }, 1000)
+
+    // 时间戳
+    // 1. getDate()
+    //const date = new Date()
+    console.log(date.getTime())
+    // 2.+new Date()   --------------推荐--------------
+    console.log(+new Date())
+    // 3. Date.now()
+    console.log(Date.now())
+
+    // DOM树里每一个内容都称之为节点
+    //  元素节点  div标签
+    //  属性节点  class属性
+    //  文本节点  标签里的文字
+    //  重点为元素节点，可以理清元素之间的关系
+
+    
+  </script>
+</body>
+
+</html>

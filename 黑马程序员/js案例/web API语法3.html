@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    body {
+      padding-top: 500px;
+      height: 3000px;
+    }
+
+    .father {
+      display: none;
+      width: 300px;
+      height: 500px;
+      margin: 100px;
+      background-color: pink;
+    }
+
+    .son {
+      width: 200px;
+      height: 200px;
+      background-color: skyblue;
+    }
+  </style>
+  <script>
+    // load 等待页面的 “全部资源” 加载完毕，在执行回调函数
+    //  监听整个页面资源，给 window 加
+    //  window.addEventListener('load', function () {  
+    //  const btn2 = document.querySelector('.btn2')
+    //   tn2.addEventListener('click', function () {
+    //    alert(11)
+    //   })
+    // })
+
+
+    // 无需等待样式表、图像等完全加载
+    //  给 document 加
+    document.addEventListener('DomContentLoad', function () {
+      const btn2 = document.querySelector('.btn2')
+      btn2.addEventListener('click', function () {
+        alert(11)
+      })
+    })
+  </script>
+</head>
+
+<body>
+  <div class="father">
+    <div class="son"></div>
+    <button>点击</button>
+  </div>
+  <ul>
+    <li>第1个孩子</li>
+    <li>第2个孩子</li>
+    <li>第3个孩子</li>
+    <li>第4个孩子</li>
+    <li>第5个孩子</li>
+    <p>不需要变色</p>
+  </ul>
+  <form action="http://www.baidu.com">
+    <input type="submit" value="免费注册">
+  </form>
+  <button class="btn2">点击</button>
+
+
+  <script>
+    // 页面滚动事件 事件：scroll 
+    //监听某些元素的内部滚动直接给某个元素加即可
+    window.addEventListener('scroll', function () {
+      //console.log(1)
+      //div.addEventListener('scroll',function(){})
+      // 获取 html元素写法
+      //console.log(document.documentElement.scrollTop)
+      const n = document.documentElement.scrollTop
+      // if (n >= 100) {
+      //   father.style.display = 'block'
+      // }
+      // else {
+      //   father.style.display = 'none'
+      // }
+
+    })
+
+    const father = document.querySelector('.father');
+    const son = document.querySelector('.son');
+    //事件冒泡：当一个元素的事件被触发时，同样的事件会在该元素的所有祖先元素中依次被触发
+    document.addEventListener('click', function () {
+      //alert('我是爷爷')
+    })  //默认为冒泡 (false) ,true为捕获
+    father.addEventListener('click', function () {
+      alert('我是爸爸')
+    })
+    son.addEventListener('click', function (e) {
+      alert('我是儿子')
+      e.stopPropagation()  // 阻止冒泡  事件对象.stopPropagation()
+    })
+
+    function fn() {
+      alert('点击了')
+    }
+    const btn = document.querySelector('button')
+    btn.addEventListener('click', fn)   //绑定事件
+    btn.removeEventListener('click', fn)  //解绑事件
+    //匿名函数无法被解绑，函数必须有名字
+
+    const ul = document.querySelector('ul')
+    ul.addEventListener('click', function (e) {
+      console.log(e.target)  // e.target就是我们点击的那个对象
+      //e.target.style.color = 'red'  所有孩子都变色
+      if (e.target.tagName === 'LI') {    //通过tagName指定变色的标签名
+        e.target.style.color = 'red'
+      }
+    })
+
+    const form = document.querySelector('form')
+    form.addEventListener('submit', function (e) {
+      e.preventDefault()  //阻止元素默认行为，如表单域提交，链接跳转
+    })
+
+
+    const djj = document.querySelector('.djj')
+    window.addEventListener('scroll', function () {
+      const n = document.documentElement.scrollTop
+      djj.style.opacity = n >= 400 ? 1 : 0
+    })
+    const dj = document.querySelector('.dj')
+    dj.addEventListener('click', function () {
+      document.documentElement.scrollTop = 0
+      // window.scrollTo(x,y)
+    })
+
+    //clientWidth 和 clientHeight 获取元素的可见部分宽高(不包含边框，margin，滚动条)
+    console.log(div.clientWidth)
+    //会在窗口尺寸改变的时候触发事件：
+    window.addEventListener('resize', function () {
+      // xxxxx
+    })
+    // offsetWidth和 offsetHeight 获取元素的自身宽高、包含元素自身设置的宽高、padding、border
+    // offsetTop和 offsetLeft 检测盒子位置  最近一级带有定位的祖先元素
+  </script>
+</body>
+
+</html>

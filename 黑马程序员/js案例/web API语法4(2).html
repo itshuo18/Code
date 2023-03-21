@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .b{
+      width: 300px;
+      height: 300px;
+      background-color: pink;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="grandfather">
+    <div class="dad">
+      <div class="baby">关闭</div>
+    </div>
+  </div>
+  <ul>
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+    <li>4</li>
+    <li>5</li>
+  </ul>
+  <div class="b"></div>
+  <script>
+    const baby = document.querySelector('.baby')
+    // parentNode 获取父节点
+    console.log(baby.parentNode.parentNode)
+    baby.addEventListener('click', function () {
+      this.parentNode.parentNode.style.display = 'none'
+    })
+    const ul = document.querySelector('ul')
+    // children 获取所有子节点 得到伪数组 选择的是亲儿子
+    console.log(ul.children)
+    const li2 = document.querySelector('ul li:nth-child(2)')
+    console.log(li2.previousElementSibling) // 上一个兄弟节点  
+    console.log(li2.nextElementSibling) // 下一个兄弟节点  
+
+    // 创建节点
+    const div = document.createElement('div')
+    const li6 = document.createElement('li')
+    const li2_5 = document.createElement('li')
+    // 追加节点 作为最后一个子元素
+    document.body.appendChild(div)
+    li6.innerHTML = '6'
+    li2_5.innerHTML = '2.5'
+    ul.appendChild(li6)
+    // 追加节点 插入某个子元素的前面
+    ul.insertBefore(li2_5, ul.children[2])
+
+    //  通过 appendChild 渲染表格
+    // for(let i=0;i<data.length;i++) {
+    //   const li =document.createElement('li')
+    //   li.innerHTML = 
+    //   ul.appendChild(li)
+    // }
+
+    // 克隆节点
+    ul.appendChild(ul.children[0].cloneNode(true))  // 深克隆
+    //const li1= ul.children[0].cloneNode(true)
+    //ul.appendChild(li1)
+    ul.appendChild(ul.children[0].cloneNode())  //浅克隆
+
+    //  删除节点  父元素.removeChild(子元素)
+    ul.removeChild(ul.children[8])
+
+    // M端事件(移动端)
+    //  触摸 touchstart
+    div.addEventListener('touchstart',function() {
+      console.log('开始摸我了')
+    })
+    //  离开 touchend
+    div.addEventListener('touchend', function () {
+        console.log('离开了')
+      })
+    //  移动 touchmove
+    div.addEventListener('touchmove', function () {
+        console.log('移动')
+      })
+      
+  </script>
+</body>
+
+</html>
