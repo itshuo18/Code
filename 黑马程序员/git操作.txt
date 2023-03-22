@@ -5,4 +5,14 @@ clear       清空页面
 git add       跟踪文件
 git commit -m        提交
 git checkout -- 文件名字      撤销修改
-git clone 远程仓库的地址
+git clone 远程仓库的地址      克隆
+git branch         查看所有分支
+git branch 分支名称       创建分支
+git checkout 分支名称       切换分支
+git checkout -b 分支名称       创建并切换分支
+git branch -d 分支名称        删除分支
+git remote show 远程仓库名称      查看远程仓库所有分支
+.gitignore      忽略文件
+*.a    忽略所有.a文件
+/ToDo    只忽略当前目录下ToDo文件
+bulid/     忽略任何目录下名为build的文件夹
