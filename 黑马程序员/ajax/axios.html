@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="./node_modules/axios/dist/axios.js"></script>
+</head>
+
+<body>
+  <button id="btnGet">GET</button>
+  <button id="btnPost">POST</button>
+  <!-- <button id="btnAjaxGET">用ajax发起get请求</button> -->
+  <button id="btnAjaxPOST">用ajax发起post请求</button>
+
+  <script>
+    const btn = document.querySelectorAll('button')
+
+    axios.defaults.baseURL = 'http://127.0.0.1:8080'
+
+    btn[0].addEventListener('click', () => {
+      axios.get('/axios-server', {
+        params: {
+          id: 100,
+          vip: 7
+        },
+        //  请求头信息
+        headers: {
+          name: 'shuo',
+          age: 18
+        }
+      }).then(value => {
+        console.log(value)
+      })
+    })
+
+
+    btn[1].addEventListener('click', () => {
+      axios.post('/axios-server', {
+        username: 'admin',
+        password: 'admin'
+      }, {
+        params: {
+          id: 200,
+          vip: 9
+        },
+        headers: {
+          height: 180,
+          weight: 180
+        }
+      }).then(value => {
+        console.log(value)
+      })
+    })
+
+
+    btn[2].addEventListener('click', () => {
+      axios({
+        method: 'POST',
+        url: '/axios-server',
+        params: {
+          vip: 10,
+          level: 30
+        },
+        headers: {
+          a: 100,
+          b: 200
+        },
+        data: {
+          username: 'admin',
+          password: 123456
+        }
+      }).then(res => {
+        console.log(res)
+        console.log(res.status)
+        console.log(res.statusText)
+        console.log(res.headers)
+        console.log(res.data)
+      })
+    })
+  </script>
+</body>
+
+</html>

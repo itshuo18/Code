@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    div {
+      width: 200px;
+      height: 100px;
+      border: 1px solid #90b;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="result"></div>
+  <div id="resultIe"></div>
+  <button>get</button>
+  <button>点击取消</button>
+  <button>IE缓存</button>
+  <script>
+    const btn = document.getElementsByTagName('button')[0]
+    const btn2 = document.getElementsByTagName('button')[1]
+    const btnIe = document.getElementsByTagName('button')[2]
+    const result = document.getElementById('result')
+    const resultIe = document.getElementById('resultIe')
+    let xhr = null
+    //  是否正在发送下一个请求
+    let isSending = false
+
+    btn.addEventListener("click", function () {
+      //  创建对象
+      if (isSending) {
+        x.abort()
+      }
+      xhr = new XMLHttpRequest()
+      isSending = true
+      //  超时设置
+      // xhr.timeout = 2000
+      // xhr.ontimeout = function () {
+      //   alert("网络异常，请稍后再试！")
+      // }
+      xhr.onerror = function () {
+        alert("网络出现问题！")
+      }
+      //  初始化 请求方法和 URL
+      xhr.open('GET', 'http://127.0.0.1:8080/server?a=100&b=200&c=300')
+      //  发送
+      xhr.send()
+      //  事件绑定，readyState 是 xhr对象中的属性，表示状态 0 1 2 3 4
+      xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4) {
+          isSending = false
+          if (xhr.status >= 200 && xhr.status <= 300) {
+            console.log(xhr.status)  //  状态码
+            console.log(xhr.statusText)  //  状态字符串
+            console.log(xhr.getAllResponseHeaders())  //  所有响应头
+            console.log(xhr.response)  //  响应体
+          }
+        }
+      }
+    })
+
+
+
+    btn2.addEventListener("click", function () {
+      console.log('1') //
+      xhr.abort()
+    })
+
+
+
+    result.addEventListener('mouseover', function () {
+      const xhr = new XMLHttpRequest();
+      xhr.open('POST', 'http://127.0.0.1:8080/server');
+      xhr.setRequestHeader('name', 'atguigu')
+      xhr.send('a=100&b=200&c=300')
+      xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4) {
+          if (xhr.status >= 200 && xhr.status <= 300) {
+            result.innerHTML = xhr.response
+          }
+        }
+      }
+    })
+
+
+
+    window.onkeydown = function () {
+      const xhr = new XMLHttpRequest()
+      xhr.responseType = 'json'
+      xhr.open('GET', 'http://127.0.0.1:8080/json-server')
+      xhr.send()
+      xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4) {
+          if (xhr.status >= 200 && xhr.status <= 300) {
+            //  手动转换
+            // let data=JSON.parse(xhr.response);
+            // console.log(data);
+            // result.innerHTML = data.name
+            //  自动转换
+            console.log(xhr.response);
+            result.innerHTML = xhr.response.name
+          }
+        }
+      }
+    }
+
+
+
+    btnIe.addEventListener("click", function () {
+      //  创建对象
+      const xhr = new XMLHttpRequest();
+      //  初始化 请求方法和 URL
+      xhr.open('GET', 'http://127.0.0.1:8080/ie?t=' + Date.now())
+      //  发送
+      xhr.send()
+      //  事件绑定，readyState 是 xhr对象中的属性，表示状态 0 1 2 3 4
+      xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4) {
+          if (xhr.status >= 200 && xhr.status <= 300) {
+            resultIe.innerHTML = xhr.response
+          }
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>

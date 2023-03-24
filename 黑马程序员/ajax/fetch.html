@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="./node_modules/axios/dist/axios.js"></script>
+</head>
+
+<body>
+  <button id="btnAjaxPOST">用fetch发起post请求</button>
+
+  <script>
+    const btn = document.querySelector('button')
+
+    btn.addEventListener('click', () => {
+      fetch('http://127.0.0.1:8080/fetch-server?vip=10', {
+        method: 'POST',
+        headers: {
+          name: 'ps'
+        },
+        //  GET请求没有 body
+        body: 'username=admin&password=123456'
+      }).then((res) => {
+        console.log(res)
+        return res.json()
+      }).then((res) => {
+        console.log(res)
+      })
+    })
+  </script>
+</body>
+
+</html>

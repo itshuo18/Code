@@ -37,7 +37,9 @@
     //  $.post(url,[date],[callback])
     $(function () {
       $('#btnPost').on('click', function () {
-        $.post('http://www.liulongbin.top:3006/api/addbook', { bookname: '水浒传', author: '施耐庵', publisher: '天津图书出版社' }, function (res) {
+        $.post('http://www.liulongbin.top:3006/api/addbook', 
+        { bookname: '水浒传', author: '施耐庵', publisher: '天津图书出版社' }, 
+        function (res) {
           console.log(res);
         })
       })

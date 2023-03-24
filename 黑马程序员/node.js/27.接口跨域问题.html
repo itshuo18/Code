@@ -13,6 +13,7 @@
   <button id="btnGET">GET</button>
   <button id="btnPOST">POST</button>
   <button id="btnJSONP">JSONP</button>
+  <button id="btnDELETE">DELETE</button>
   <script>
     $(function () {
       $('#btnGET').on('click', function () {
@@ -38,6 +39,16 @@
             bookname: '水浒传',
             author: '施耐庵'
           },
+          success: function (res) {
+            console.log(res)
+          }
+        });
+      })
+
+      $('#btnDELETE').on('click', function () {
+        $.ajax({
+          type: 'DELETE',
+          url: 'http://127.0.0.1:8080/api/delete',
           success: function (res) {
             console.log(res)
           }
