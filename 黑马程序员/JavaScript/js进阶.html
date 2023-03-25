@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+
+  <script>
+    //  闭包 = 内层函数 +外层函数的变量
+    //  里层的函数用到了外层函数的变量
+    //  封闭数据，提供操作，外部也可以访问到函数内部的变量(可以访问，但不能修改 ),实现数据的私有
+    //  有内存泄漏的风险
+    function outer() {
+      let i = 10
+      function fn() {
+        i++
+        console.log(`${i}`)
+      }
+      return fn
+    }
+    const fun = outer()
+    fun()
+
+
+
+    //  数组解构
+    let arr = [1, 2, 3]
+    // 批量声明变量 a b c 
+    // 同时将数组单元值 1 2 3 依次赋值给变量 a b c
+    let [a, b, c] = arr
+      //  快速交换ab
+      ;[a, b] = [b, a]
+
+
+
+    //  对象解构
+    const obj = [{
+      uname: 'pink',
+      family: {
+        mother: '1',
+        father: '2',
+        sister: '3'
+      },
+      age: 18
+    }]
+    const { uname, age } = obj
+    //  把对象的属性解构出来，成为变量
+    //  属性名和变量名必须相同！！！
+    //  或者： 旧变量名:新变量名
+    const { uname: username, age: userAge } = obj
+    //const [{ uname, family: { mother, father, sister }, age }]=obj
+
+
+
+    //  构造函数：主要用来初始化对象
+    //  内置构造函数：Object，Array，String，Number
+
+    function Person(name, age) {
+      // 构造函数内部的 this 就是实例对象
+      // 实例对象中动态添加属性
+      this.name = name
+      this.age = age
+      this.gender = 'male'
+      // 实例对象动态添加方法
+      this.sayHi = function () {
+        console.log('大家好~')
+      }
+    }
+    Person.gender = '男'
+    const p1 = new Person()
+    console.log(p1)
+    console.log(p1.name) // 访问实例属性
+    p1.sayHi() // 调用实例方法
+    console.log(Person.gender)
+    console.log(p1.gender)
+
+
+
+    //  数组操作方法
+    const arr2 = [1, 5, 8]
+    //  1. 实例方法 `forEach` 用于遍历数组，替代 `for` 循环(重点)
+
+    //  2. 实例方法 `filter` 过滤数组单元值，生成新数组(重点)
+
+    //  3. 实例方法 `map` 迭代原数组，生成新数组(重点)
+
+    //  4. 实例方法 `join` 数组元素拼接为字符串，返回字符串(重点)
+    const str2 = arr2.join(',') //  用 ","隔开
+
+    //  5. 实例方法  `find`  查找元素， 返回符合测试条件的第一个数组元素值，如果没有符合条件的则返回 undefined(重点)
+    const re = arr2.find((item) => { return item === 5 })
+
+    //  6. 实例方法 `every` 检测数组所有元素是否都符合指定条件，如果 ** 所有元素 ** 都通过检测返回 true，否则返回 false(重点)
+    const flag = arr2.every((item) => { item <= 10 })
+
+    //  7、实例方法`reduce` 返回累计处理的结果，经常用于求和
+    const total = arr2.reduce((prev, current) => { return prev + current }, 起始值)
+
+    //  8. Array.from()  把伪数组转换为真数组
+    const lis = document.querySelectorAll('ul li') //  伪数组
+    const lis2 = Array.from(lis)
+    lis2.pop()
+
+    arr.push(50); //添加到数组末尾
+    arr.unshift(5); //添加到数组开头
+    arr.pop(); //删除数组最后一个元素
+    arr.shift(); //删除数组第一个元素
+    arr.splice(1, 1); //删除指定元素， splice(起始位置，删除数量)
+
+
+
+    // 字符串常见方法
+    const str = 'pink,red'
+    //  1. 实例属性 `length` 用来获取字符串的度长(重点)
+
+    //  2. 实例方法 `split('分隔符')` 用来将字符串拆分成数组(重点)
+    const arr3 = str.split(',')
+
+    //  3. 实例方法 `substring（需要截取的第一个字符的索引[,结束的索引号]）` 用于字符串截取(重点)
+    const str3 = str.substring(2, 5)  //  结束的索引号不包括想要截取的部分
+
+    //  4. 实例方法 `startsWith(检测字符串[, 检测位置索引号])` 检测是否以某字符开头(重点)
+    console.log(str.startsWith('pi'))
+
+    //  5. 实例方法 `includes(搜索的字符串[, 检测位置索引号])` 判断一个字符串是否包含在另一个字符串中，根据情况返回 true 或 false(重点)
+    console.log(str.includes('in', 1))
+
+
+    //  toFixed()  设置保留小数位的长度
+
+
+
+
+    //  构造函数 存在浪费性能、内存的问题
+    function star(uname, age) {
+      this.uname = uname
+      this.age = age
+      // this.sing = () => {
+      //   console.log('唱歌')
+      // }
+    }
+
+    //  原型：一个对象，也称 prototype为原型对象
+    //  作用：我们可以把那些不变的方法，直接定义在 prototype 对象上，这样所有对象的实例就可以共享这些方法。
+    //  构造函数和原型对象中的 this 都指向 实例化的对象
+
+    //  构造函数通过原型分配的函数是所有对象所 共享的
+    //  JavaScript规定，每一个构造函数都有一个 prototype 属性，指向另一个对象，所以我们也称为原型对象
+    //  这个对象可以挂载函数，对象实例化不会多次创建原型上函数，节约内存
+
+    // star.prototype.sing = function () {
+    //   console.log('唱歌')
+    // }
+    // star.prototype.dance = function () {
+    //   console.log('跳舞')
+    // }
+
+    //   每个原型对象里面都有个 constructor 属性（constructor 构造函数）
+    //   作用：该属性指向该原型对象的构造函数，简单理解，就是指向我的爸爸，我是有爸爸的孩子
+
+    star.prototype = {
+      //  重新指回构造函数
+      constructor: star,
+      sing: function () {
+        console.log('唱歌')
+      },
+      dance: function () {
+        console.log('跳舞')
+      }
+    }
+
+  </script>
+</body>
+
+</html>

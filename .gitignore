@@ -1,2 +1,4 @@
-黑马程序员/node.js/node_modules/
-黑马程序员/ajax/node_modules/
+*.pdf
+node_modules/
+media/
+swiper-5.4.5/

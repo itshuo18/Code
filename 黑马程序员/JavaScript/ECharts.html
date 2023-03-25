@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="../lib/echarts.min.js"></script>
+  <style>
+    div {
+      width: 700px;
+      height: 400px;
+      background-color: pink;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="box"></div>
+  <div class="box2"></div>
+  <script>
+    let myChart = echarts.init(document.querySelector('.box'))
+    let option = {
+      title: {
+        text: 'ECharts 入门示例'
+      },
+      tooltip: {},
+      legend: {
+        data: ['销量']
+      },
+      xAxis: {
+        data: ['衬衫', '羊毛衫', '雪纺衫', '裤子', '高跟鞋', '袜子']
+      },
+      yAxis: {},
+      series: [
+        {
+          name: '销量',
+          type: 'bar',
+          data: [5, 20, 36, 10, 10, 20]
+        }
+      ]
+    }
+    myChart.setOption(option)
+
+    let myChart2 = echarts.init(document.querySelector('.box2'))
+  let option2 = {
+    title: {
+      text: 'Nightingale Chart',
+      subtext: 'Fake Data',
+      left: 'center'
+    },
+    tooltip: {
+      trigger: 'item',
+      formatter: '{a} <br/>{b} : {c} ({d}%)'
+    },
+    legend: {
+      left: 'center',
+      top: 'bottom',
+      data: [
+        'rose1',
+        'rose2',
+        'rose3',
+        'rose4',
+        'rose5',
+        'rose6',
+        'rose7',
+        'rose8'
+      ]
+    },
+    toolbox: {
+      show: true,
+      feature: {
+        mark: { show: true },
+        dataView: { show: true, readOnly: false },
+        restore: { show: true },
+        saveAsImage: { show: true }
+      }
+    },
+    series: [
+      {
+        name: 'Radius Mode',
+        type: 'pie',
+        radius: [20, 140],
+        center: ['25%', '50%'],
+        roseType: 'radius',
+        itemStyle: {
+          borderRadius: 5
+        },
+        label: {
+          show: false
+        },
+        emphasis: {
+          label: {
+            show: true
+          }
+        },
+        data: [
+          { value: 40, name: 'rose 1' },
+          { value: 33, name: 'rose 2' },
+          { value: 28, name: 'rose 3' },
+          { value: 22, name: 'rose 4' },
+          { value: 20, name: 'rose 5' },
+          { value: 15, name: 'rose 6' },
+          { value: 12, name: 'rose 7' },
+          { value: 10, name: 'rose 8' }
+        ]
+      },
+      {
+        name: 'Area Mode',
+        type: 'pie',
+        radius: [20, 140],
+        center: ['75%', '50%'],
+        roseType: 'area',
+        itemStyle: {
+          borderRadius: 5
+        },
+        data: [
+          { value: 30, name: 'rose 1' },
+          { value: 28, name: 'rose 2' },
+          { value: 26, name: 'rose 3' },
+          { value: 24, name: 'rose 4' },
+          { value: 22, name: 'rose 5' },
+          { value: 20, name: 'rose 6' },
+          { value: 18, name: 'rose 7' },
+          { value: 16, name: 'rose 8' }
+        ]
+      }
+    ]
+  }
+    myChart2.setOption(option2)
+  </script>
+</body>
+
+</html>
