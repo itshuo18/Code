@@ -6,7 +6,15 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+  <script src="./js/vue.js"></script>
+  <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+  <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
   <style>
+    #root {
+      width: 800px;
+      margin: auto
+    }
+
     .basic {
       width: 400px;
       height: 100px;
@@ -28,43 +36,74 @@
     .normal {
       background-color: skyblue;
     }
-
-    .atguigu1 {
-      background-color: yellowgreen;
-    }
-
-    .atguigu2 {
-      font-size: 30px;
-      text-shadow: 2px 2px 10px red;
-    }
-
-    .atguigu3 {
-      border-radius: 20px;
-    }
   </style>
-  <script src="./js/vue.js"></script>
 </head>
 
 <body>
   <div id="root">
-    <div class="basic" :class="mood" @click="changeMood">{{name}}</div>
+    <app></app>
   </div>
   <script>
     Vue.config.productionTip = false
-    const vm = new Vue({
+
+    const stu = Vue.extend({
+      template: `
+      <div>
+        {{name}}
+        </div>`,
+      data() {
+        return { name: 'shuo' }
+      },
+
+    })
+
+    const school = Vue.extend({
+      template: `
+      <div>
+        {{sName}}
+        <stu></stu>
+        </div>`,
+      data() {
+        return { sName: '尚硅谷' }
+      },
+      components: {
+        stu
+      }
+    })
+
+    const app = {
+      template: `
+      <div>
+        <school></school>
+        </div>`,
+      components: {
+        school
+      }
+    }
+
+    new Vue({
       el: '#root',
+      components: {
+        app
+      },
       data: {
-        name: '尚硅谷',
-        mood: 'normal'
+        mood: 'normal',
+        n: 10,
+        opacity: 1
       },
       methods: {
         changeMood() {
-          const arr = ['normal','happy','sad']
+          const arr = ['normal', 'happy', 'sad']
           this.mood = 'happy'
         }
       },
       computed: {},
-      watch: {}
+      watch: {},
+      directives: {
+        big(e, binding) {
+          e.innerText = binding.value * 10
+        }
+      }
     })
 
   </script>
