@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="../lib/bootstrap.min.css">
+  <style>
+    @media(min-width:768px) {}
+
+    @media(min-width:992px) {}
+
+    @media(min-width:1200px) {}
+
+    /*  完整写法 */
+    /* @media 关键词 媒体类型 and (媒体特性) {CSS代码} */
+    /* 关键词：and  only  not */
+    /* 媒体类型:  screen、print、speech、all */
+
+
+    .container div,.container-fluid{
+      height: 100px;
+      background-color: pink;
+    }
+  </style>
+  <link rel="stylesheet" href=""  media="(min-width:768px)" >
+  <link rel="stylesheet" href=""  media="(min-width:992px)" >
+</head>
+
+<body>
+  <!-- container 封装版心样式，默认居中，自带15px的padding -->
+
+  <!-- bootstrap默认将网页分成12等份，屏幕分成4类 768,992,1200 -->
+  <!-- <768 col-xs-份数    >768 col-sm-3    >992 col-md-3    >1200 col-lg-3 -->
+  <div class="container">
+    <div class="col-lg-1 col-md-3 col-sm-4 col-xs-6">1</div>
+    <div class="col-lg-1 col-md-3 col-sm-4 col-xs-6">2</div>
+    <div class="col-lg-1 col-md-3 col-sm-4 col-xs-6">3</div>
+    <div class="col-lg-1 col-md-3 col-sm-4 col-xs-6">4</div>
+    <div class="col-lg-1 col-md-3 col-sm-4 col-xs-6">5</div>
+    <div class="col-lg-1 col-md-3 col-sm-4 col-xs-6">6</div>
+    <div class="col-lg-1 col-md-3 col-sm-4 col-xs-6">7</div>
+    <div class="col-lg-1 col-md-3 col-sm-4 col-xs-6">8</div>
+    <div class="col-lg-1 col-md-3 col-sm-4 col-xs-6">9</div>
+    <div class="col-lg-1 col-md-3 col-sm-4 col-xs-6">10</div>
+    <div class="col-lg-1 col-md-3 col-sm-4 col-xs-6">11</div>
+    <div class="col-lg-1 col-md-3 col-sm-4 col-xs-6">12</div>
+  </div>
+
+
+  <div class="container">
+    <div class="row">
+      row 抵消15px的padding
+    </div>
+  </div>
+
+  <div class="container-fluid">宽度100%，自带15px的padding</div>
+</body>
+
+</html>

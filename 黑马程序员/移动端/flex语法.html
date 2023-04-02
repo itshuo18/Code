@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="../lib/bootstrap.min.css">
+  <style>
+    .box {
+      display: flex;
+
+      /* justify-content 调整元素在主轴的对齐方式  */
+      /* center  居中、 space-around 两侧有空隙、 space-between  两侧无空隙、 space-evenly  两侧有空隙且间距相等*/
+      justify-content: space-evenly;
+
+      /* align-items 调整元素在侧轴的对齐方式： center  居中、 stretch  沿着主轴铺满盒子 */
+      align-items: stretch;
+
+      /* flex-direction: column 调整主轴方向为垂直方向  */
+      /* flex-direction: column; */
+
+      /* flex-wrap: wrap 子元素可以换行 */
+      flex-wrap: wrap;
+
+      /* align-content 换行后的行对齐方式  取值与justify-content相同  */
+      align-content: space-around;
+
+      height: 500px;
+      border: 1px solid black;
+    }
+
+    .box div {
+      background-color: pink;
+      border: 1px solid black;
+      margin: 0 20px;
+      width: 200px;
+      height: 200px;
+    }
+
+    div:nth-child(2) {
+
+      /* align-self 调整单独元素在侧轴的对齐方式  */
+      align-self: center;
+
+      /* 子元素所占剩余份数 */
+      flex: 1;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="box">
+    <div>1</div>
+    <div>2</div>
+    <div>3</div>
+    <div>1</div>
+    <div>2</div>
+    <div>3</div>
+  </div>
+</body>
+
+</html>

@@ -1,0 +1,12 @@
+{
+  //  需要被编译的文件
+  "include": ["./**/*"],
+  "compilerOptions": {
+    "module": "es6",
+    "target": "es6",
+  },
+  //  不需要被编译的文件
+  "exclude": [
+    "node_modules"
+  ]
+}

@@ -1,0 +1,47 @@
+// out:false
+//  禁止导出
+@color: pink;
+@font14: 14px;
+@border: 5px + 5;
+
+//  1、计算    (运算符左右两侧必须敲一个空格隔开)
+div{
+  width: 100 + 10px;
+  width: 100 - 10px;
+  width: 100 + 10px;
+  width: (100 / 10px);
+}
+
+//  2、嵌套
+.header {
+  border: @border solid red;
+  a {
+    color: @color;
+    :hover {
+      color: skyblue;
+    }
+  }
+  //  &表示不生成后代，表示当前元素
+  &::before {
+    content: '';
+  }
+}
+
+//  3、变量
+
+body {
+  background-color: @color;
+}
+div {
+  background-color: @color;
+  font-size: @font14
+}
+
+//  4、导入   (能够引入其他 less文件)
+//  @import '';
+//  5、导出
+//  out: ./abc/
+
+
+
+
