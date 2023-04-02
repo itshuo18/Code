@@ -1,6 +1,6 @@
 {
   //  需要被编译的文件
-  "include": ["./**/*"],
+  "include": ["./**/*", "../TS/TS_shuo/Hello.ts", "../TS/TS_shuo/shuo.js"],
   "compilerOptions": {
     "module": "es6",
     "target": "es6",

@@ -2,3 +2,4 @@
 node_modules/
 media/
 swiper-5.4.5/
+*.DS_Store

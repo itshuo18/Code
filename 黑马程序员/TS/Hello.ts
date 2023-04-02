@@ -44,7 +44,7 @@ enum Gender {
 let l: { name: string, gender: Gender.Male }
 l = {
   name: 'shuo',
-  gender: 1
+  gender: Gender.Male
 }
 
 //  类型的别名
